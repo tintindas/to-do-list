@@ -18,15 +18,16 @@ mongoose.connect("mongodb+srv://tintin_das:wrJPM26M58r9sgP@cluster0-yo7rn.mongod
   useNewUrlParser: true
 });
 
-// const today = new Date();
-//
-// const options = {
-//   weekday: "long",
-//   day: "numeric",
-//   month: "long"
-// }
-//
-// var day = today.toLocaleDateString("en-US", options);
+const today = new Date();
+
+const options = {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  timezone: "Asia/Calcutta"
+}
+
+var day = today.toLocaleDateString("en-US", options);
 
 const itemsSchema = {
   name: String
@@ -72,7 +73,7 @@ app.get("/", function(req, res) {
         res.redirect("/");
       } else {
         res.render("list", {
-          title: "Today",
+          title: day,
           list: foundItems
         });
       }
